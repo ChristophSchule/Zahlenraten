@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env/
+
+# SQLite databases
+instance/*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# Config & secrets
+*.env
+config.py
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
