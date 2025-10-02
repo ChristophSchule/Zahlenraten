@@ -45,6 +45,16 @@ body * {
     grid-area: input;
 }
 
+@keyframes borderPulse {
+  0% { border-color: black;background-color: #fafafa; }
+  50% { border-color: red;background-color: #ff8080; }
+  100% { border-color: black;background-color: #fafafa; }
+}
+
+.borderPulse {
+    animation: borderPulse 2s;
+}
+
 .guessBtn, .restartBtn {
     height: 5rem;
     width: 12rem;
@@ -59,7 +69,7 @@ body * {
     transition: background-color 0.125s linear;
 }
 
-.guessBtn:hover, .restartBtn:hover, .guessBtn:focus, .restartBtn:focus {
+button:hover:not(.disabled), button:focus-visible:not(.disabled) {
     background-color: #70934d;
 }
 
@@ -70,6 +80,11 @@ body * {
 .restartBtn {
     display: none;
     grid-area: btn1;
+}
+
+.disabled {
+    filter: contrast(0.5);
+    cursor: not-allowed;
 }
 
 .scoreboard {
