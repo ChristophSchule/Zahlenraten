@@ -1,5 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Hello, Flask + SQLite + Frontend!</h1>
+<div class="content">
+    <h1 class="gameHeader">Zahlenraten</h1>
+    <span class="userInputPrompt">Gib eine Zahl ein, um zu raten:</span>
+    <input type="number" class="userInput" placeholder="###" min="0" max="100"/>
+    <button class="guessBtn disabled">Spiel starten</button>
+    <button class="restartBtn">Neues Spiel</button>
+    <div class="scoreboard">
+        <span class="scoreboardHeader">Highscores</span>
+        <div class="scoreboardEntry">
+            <span class="scoreboardEntryNumber">1.</span>
+            <span class="scoreboardEntryName">Kevin</span>
+            <span class="scoreboardEntryScore">69</span>
+        </div>
+        <div class="scoreboardEntry">
+            <span class="scoreboardEntryNumber">2.</span>
+            <span class="scoreboardEntryName">Kevin</span>
+            <span class="scoreboardEntryScore">69</span>
+        </div>
+        <div class="scoreboardEntry">
+            <span class="scoreboardEntryNumber">3.</span>
+            <span class="scoreboardEntryName">Kevin</span>
+            <span class="scoreboardEntryScore">69</span>
+        </div>
+    </div>
+</div>
+<!-- <div class="adsPopup">
+    <span class="adsPopupText">Hier könnte Ihre Werbung stehen</span>
+    <button class="closePopupBtn">x</button>
+</div> -->
 {% endblock %}
