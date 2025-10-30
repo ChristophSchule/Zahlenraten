@@ -5,7 +5,7 @@
 <div class="content">
     <h1 class="gameHeader">Zahlenraten</h1>
     <span class="userInputPrompt">Gib eine Zahl ein, um zu raten:</span>
-
+    <div class="form-container">
     <form action="{{ url_for('main.guess') }}" method="post" id="guessForm">
         <input name="guess" id="guessInput" type="number" class="userInput" placeholder="###" min="0" max="100"/>
         <div class="button-row">
@@ -15,6 +15,7 @@
             <button type="submit" name="action" value="restart" class="restartBtn{% if not (guesses and guesses|length > 0) %} invisible-btn{% endif %}">Neues Spiel</button>
         </div>
     </form>
+    </div>
     <script>
     const guessInput = document.getElementById('guessInput');
     const guessBtn = document.getElementById('guessBtn');

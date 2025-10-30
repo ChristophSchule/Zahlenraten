@@ -4,10 +4,7 @@
 body {
     font-family: monospace;
     background: #fafafa;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    margin: 2rem;
 }
 
 body * {
@@ -16,22 +13,32 @@ body * {
 }
 
 .content {
+    position: relative;
     display: grid;
     border: 0.25rem solid black;
     grid-template-areas: 'header header header'
                          'text1 text1 text1'
                          '. input scoreboard'
-                         'btn1 btn2 scoreboard'
+                         'buttons buttons scoreboard'
                          'guesses guesses guesses';
     padding: 3rem 2rem;
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr;
+    min-height: 0;
+    flex: 1 0 auto;
+    margin: 2rem 0;
     justify-items: center;
     align-items: start;
     align-content: space-around;
-    margin: 2rem 2rem;
 }
-/* Recent guesses row at the bottom of the content grid */
+
+.button-row {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
 .recent-guesses {
     grid-area: guesses;
     margin-top: 2rem;
@@ -87,13 +94,13 @@ button:hover:not(.disabled), button:focus-visible:not(.disabled) {
 }
 
 .guessBtn {
-    grid-area: btn2;
+    /* no grid-area, handled by .button-row */
 }
 
 /* .restartBtn is now shown/hidden by template logic, not CSS */
 .restartBtn {
     /* display: none; removed */
-    grid-area: btn1;
+    /* no grid-area, handled by .button-row */
 }
 
 .disabled {
@@ -105,11 +112,16 @@ button:hover:not(.disabled), button:focus-visible:not(.disabled) {
     display: grid;
     border: 0.1875rem solid black;
     border-radius: 0.5rem;
-    width: 22rem;
+    max-width: 22rem;
+    width: auto;
     gap: 0.125rem;
     background-color: black;
     padding: 0.0625rem;
-    grid-area: scoreboard;
+    position: absolute;
+    top: 18rem;
+    right: 2rem;
+    z-index: 2;
+    grid-area: unset;
 }
 
 .scoreboard > * {
