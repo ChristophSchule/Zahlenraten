@@ -4,7 +4,13 @@
 
 <div class="content">
     <h1 class="gameHeader">Zahlenraten</h1>
+    {% if result and result == "too low" %}
+        <span class="userInputPrompt">Zu niedrig!<br/>Gib eine Zahl ein, um zu raten:</span>
+    {% elif result and result == "too high" %}
+        <span class="userInputPrompt">Zu hoch!<br/>Gib eine Zahl ein, um zu raten:</span>
+    {% else %}
     <span class="userInputPrompt">Gib eine Zahl ein, um zu raten:</span>
+    {% endif %}
     <div class="form-container">
     <form action="{{ url_for('main.guess') }}" method="post" id="guessForm">
         <input name="guess" id="guessInput" type="number" class="userInput" placeholder="###" min="0" max="100"/>

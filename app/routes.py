@@ -24,7 +24,7 @@ def guess():
     if result == "correct":
         return render_template("game_over.html", guesses=guesses, number_to_guess=number_to_guess)
     else:
-        return render_template("index.html", guesses=guesses, number_to_guess=number_to_guess)
+        return render_template("index.html", guesses=guesses, result=result)
 
 
 def start_game():
@@ -32,4 +32,4 @@ def start_game():
     # Generate a random number between 0 and 100 and store in session
     session['number_to_guess'] = generate_random_number(0, 100)
     session['number_of_attempts'] = 0
-    return render_template("index.html", guesses=[], number_to_guess=session['number_to_guess'])
+    return render_template("index.html", guesses=[])
