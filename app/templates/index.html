@@ -2,4 +2,16 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Hello, Flask + SQLite + Frontend!</h1>
+
+<form action="{{ url_for('main.guess') }}" method="post">
+    <input type="text" name="guess" placeholder="Enter your guess">
+    <button type="submit">Run Python Function</button>
+</form>
+
+{% if guess %}
+    <p>Guess received: {{ guess }}</p>
+{% else %}
+    <p>No guess received yet.</p>
+{% endif %}
+
 {% endblock %}
