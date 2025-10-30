@@ -70,14 +70,6 @@
                 {{ guesses|join(', ') }}
             </span>
         </div>
-
-        {{ guesses[-1] }}
-        {{ number_to_guess }}
-        {% if number_to_guess == guesses[-1]|int %}
-        <div>
-            <strong>DEBUG: RICHTIG</strong>
-        </div>
-        {% endif %}
     {% endif %}
 </div>
 {% endblock %}
