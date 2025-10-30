@@ -24,3 +24,7 @@ Thumbs.db
 # IDE-specific
 .vscode/
 .idea/
+
+# vscode settings
+.vscode/
+settings.json
