@@ -6,11 +6,39 @@
     <h1 class="gameHeader">Zahlenraten</h1>
     <span class="userInputPrompt">Gib eine Zahl ein, um zu raten:</span>
 
-    <form action="{{ url_for('main.guess') }}" method="post">
-    <input name="guess" type="number" class="userInput" placeholder="###" min="0" max="100"/>
-    <button class="guessBtn disabled">Spiel starten</button>
-    <button type="submit" class="restartBtn">Neues Spiel</button>
+    <form action="{{ url_for('main.guess') }}" method="post" id="guessForm">
+        <input name="guess" id="guessInput" type="number" class="userInput" placeholder="###" min="0" max="100"/>
+        <div class="button-row">
+            <button name="action" value="guess" class="guessBtn disabled" id="guessBtn" disabled>
+                {% if guesses and guesses|length > 0 %}Raten{% else %}Spiel starten{% endif %}
+            </button>
+            <button type="submit" name="action" value="restart" class="restartBtn{% if not (guesses and guesses|length > 0) %} invisible-btn{% endif %}">Neues Spiel</button>
+        </div>
     </form>
+    <script>
+    const guessInput = document.getElementById('guessInput');
+    const guessBtn = document.getElementById('guessBtn');
+    const guessForm = document.getElementById('guessForm');
+    guessInput.addEventListener('input', function() {
+        if (guessInput.value && !isNaN(guessInput.value)) {
+            guessBtn.classList.remove('disabled');
+            guessBtn.disabled = false;
+        } else {
+            guessBtn.classList.add('disabled');
+            guessBtn.disabled = true;
+        }
+    });
+    guessInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !guessBtn.disabled) {
+            e.preventDefault();
+            guessBtn.click();
+        }
+    });
+    window.addEventListener('DOMContentLoaded', function() {
+        guessInput.focus();
+    });
+    </script>
+    {% if not guesses or guesses|length == 0 %}
     <div class="scoreboard">
         <span class="scoreboardHeader">Highscores</span>
         <div class="scoreboardEntry">
@@ -29,18 +57,22 @@
             <span class="scoreboardEntryScore">69</span>
         </div>
     </div>
+    {% endif %}
+    <!-- <div class="adsPopup">
+        <span class="adsPopupText">Hier könnte Ihre Werbung stehen</span>
+        <button class="closePopupBtn">x</button>
+    </div> -->
+    {% if guesses %}
+        <div class="recent-guesses">
+            <h3>Letzte Versuche:</h3>
+            <span>
+                {{ guesses|join(', ') }}
+            </span>
+        </div>
+    {% else %}
+        <div class="recent-guesses">
+            <p>No guess received yet.</p>
+        </div>
+    {% endif %}
 </div>
-<!-- <div class="adsPopup">
-    <span class="adsPopupText">Hier könnte Ihre Werbung stehen</span>
-    <button class="closePopupBtn">x</button>
-</div> -->
-
-{% if guess %}
-    <p>Guess received: {{ guess }}</p>
-{% else %}
-    <p>No guess received yet.</p>
-{% endif %}
-
-
-
 {% endblock %}

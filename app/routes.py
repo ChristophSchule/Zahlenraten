@@ -1,16 +1,24 @@
-from flask import Blueprint, render_template, Flask, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, Flask, render_template, request, redirect, url_for, session
 from .utils import *
 
 bp = Blueprint('main', __name__)
 
+
 @bp.route('/', methods=["GET", "POST"])
 def index():
-    guess = request.form.get("guess")  # or None if GET
-    return render_template('index.html', guess=guess)
+    guesses = session.get('guesses', [])
+    return render_template('index.html', guesses=guesses)
+
 
 @bp.route("/guess", methods=["POST"])
 def guess():
-    # get the value from the form
+    action = request.form.get("action")
+    if action == "restart":
+        session['guesses'] = []
+        return render_template("index.html", guesses=[])
     guess = request.form.get("guess")
-    handle_guess(guess)  
-    return render_template("index.html", guess=guess)
+    handle_guess(guess)
+    guesses = session.get('guesses', [])
+    guesses.append(guess)
+    session['guesses'] = guesses
+    return render_template("index.html", guesses=guesses)
