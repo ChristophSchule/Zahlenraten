@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Game Over{% endblock %}
+{% block content %}
+<div class="content">
+    <h1>🎉 Glückwunsch!</h1>
+    <p>Du hast die richtige Zahl <strong>{{ number_to_guess }}</strong> erraten!</p>
+    <p>Versuche: {{ guesses|length }}</p>
+    <div class="recent-guesses">
+        <h3>Bisher geratene Zahlen:</h3>
+        <span>{{ guesses|join(', ') }}</span>
+    </div>
+    <form action="{{ url_for('main.guess') }}" method="post">
+        <button type="submit" name="action" value="restart" class="restartBtn">Neues Spiel starten</button>
+    </form>
+</div>
+{% endblock %}

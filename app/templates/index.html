@@ -1,3 +1,8 @@
+    {% if number_to_guess is not none %}
+    <div style="color: red; text-align: center; margin-bottom: 1rem;">
+        <strong>DEBUG: Generated Number: {{ number_to_guess }}</strong>
+    </div>
+    {% endif %}
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
@@ -65,11 +70,19 @@
     </div> -->
     {% if guesses %}
         <div class="recent-guesses">
-            <h3>Letzte Versuche:</h3>
+            <h3>Bisher geratene Zahlen:</h3>
             <span>
                 {{ guesses|join(', ') }}
             </span>
         </div>
+
+        {{ guesses[-1] }}
+        {{ number_to_guess }}
+        {% if number_to_guess == guesses[-1]|int %}
+        <div>
+            <strong>DEBUG: RICHTIG</strong>
+        </div>
+        {% endif %}
     {% endif %}
 </div>
 {% endblock %}
