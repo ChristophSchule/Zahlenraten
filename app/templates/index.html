@@ -5,9 +5,12 @@
 <div class="content">
     <h1 class="gameHeader">Zahlenraten</h1>
     <span class="userInputPrompt">Gib eine Zahl ein, um zu raten:</span>
-    <input type="number" class="userInput" placeholder="###" min="0" max="100"/>
+
+    <form action="{{ url_for('main.guess') }}" method="post">
+    <input name="guess" type="number" class="userInput" placeholder="###" min="0" max="100"/>
     <button class="guessBtn disabled">Spiel starten</button>
-    <button class="restartBtn">Neues Spiel</button>
+    <button type="submit" class="restartBtn">Neues Spiel</button>
+    </form>
     <div class="scoreboard">
         <span class="scoreboardHeader">Highscores</span>
         <div class="scoreboardEntry">
@@ -31,13 +34,6 @@
     <span class="adsPopupText">Hier könnte Ihre Werbung stehen</span>
     <button class="closePopupBtn">x</button>
 </div> -->
-
-<h1>Hello, Flask + SQLite + Frontend!</h1>
-
-<form action="{{ url_for('main.guess') }}" method="post">
-    <input type="text" name="guess" placeholder="Enter your guess">
-    <button type="submit">Run Python Function</button>
-</form>
 
 {% if guess %}
     <p>Guess received: {{ guess }}</p>
