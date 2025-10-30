@@ -1,3 +1,12 @@
+form#guessForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.invisible-btn {
+    visibility: hidden;
+}
 body {
     font-family: monospace;
     background: #fafafa;
@@ -10,19 +19,45 @@ body * {
 }
 
 .content {
+    position: relative;
     display: grid;
     border: 0.25rem solid black;
     grid-template-areas: 'header header header'
                          'text1 text1 text1'
-                         '. input scoreboard'
-                         'btn1 btn2 scoreboard';
+                         '. form-container scoreboard'
+                         'buttons buttons scoreboard'
+                         'guesses guesses guesses';
+.form-container {
+    grid-area: form-container;
+    justify-self: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
     padding: 3rem 2rem;
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 44rem;
+    min-height: 0;
+    flex: 1 0 auto;
+    margin: 2rem 0;
     justify-items: center;
     align-items: start;
     align-content: space-around;
+}
+
+.button-row {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.recent-guesses {
+    grid-area: guesses;
+    margin-top: 2rem;
+    text-align: center;
 }
 
 .gameHeader {
@@ -74,12 +109,13 @@ button:hover:not(.disabled), button:focus-visible:not(.disabled) {
 }
 
 .guessBtn {
-    grid-area: btn2;
+    /* no grid-area, handled by .button-row */
 }
 
+/* .restartBtn is now shown/hidden by template logic, not CSS */
 .restartBtn {
-    display: none;
-    grid-area: btn1;
+    /* display: none; removed */
+    /* no grid-area, handled by .button-row */
 }
 
 .disabled {
@@ -91,11 +127,16 @@ button:hover:not(.disabled), button:focus-visible:not(.disabled) {
     display: grid;
     border: 0.1875rem solid black;
     border-radius: 0.5rem;
-    width: 22rem;
+    max-width: 22rem;
+    width: auto;
     gap: 0.125rem;
     background-color: black;
     padding: 0.0625rem;
-    grid-area: scoreboard;
+    position: absolute;
+    top: 18rem;
+    right: 2rem;
+    z-index: 2;
+    grid-area: unset;
 }
 
 .scoreboard > * {
