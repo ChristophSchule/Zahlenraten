@@ -24,7 +24,7 @@ def guess():
     if result == "correct":
         return render_template("game_over.html", guesses=guesses, number_to_guess=number_to_guess)
     else:
-        return render_template("index.html", guesses=guesses, result=result)
+        return render_template("index.html", guesses=guesses, result=result, count_guesses = len(guesses))
 
 
 def start_game():

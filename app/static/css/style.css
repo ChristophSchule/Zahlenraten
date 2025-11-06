@@ -108,14 +108,34 @@ button:hover:not(.disabled), button:focus-visible:not(.disabled) {
     background-color: #70934d;
 }
 
-.guessBtn {
-    /* no grid-area, handled by .button-row */
+.adsPopup {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+    z-index: 999;
+    padding: 2rem;
+    display: none;
 }
 
-/* .restartBtn is now shown/hidden by template logic, not CSS */
-.restartBtn {
-    /* display: none; removed */
-    /* no grid-area, handled by .button-row */
+.closePopupBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.1875rem solid black;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;;
 }
 
 .disabled {
