@@ -63,10 +63,10 @@
         {% endif %}
     </div>
     {% endif %}
-    <!-- <div class="adsPopup">
-        <span class="adsPopupText">Hier könnte Ihre Werbung stehen</span>
-        <button class="closePopupBtn">x</button>
-    </div> -->
+    <div class="adsPopup">
+        <video src="https://cdn.mtdv.me/video/rick.mp4" controls autoplay muted id="vid" width="100%" height="100%">adsPopupFrame"></video>
+        <button class="closePopupBtn" id="btn">᰽</button>
+    </div>
     {% if guesses %}
         <div class="recent-guesses">
             <h3>Bisher geratene Zahlen:</h3>
@@ -76,4 +76,33 @@
         </div>
     {% endif %}
 </div>
+<script>
+    function close_ad() {
+        document.querySelector('.adsPopup').style.display = 'none';
+        // stop video playback
+        var video = document.getElementById('vid');
+        video.pause();
+        video.currentTime = 0;
+    }
+    function show_ad() {
+        document.querySelector('.adsPopup').style.display = 'block';
+        var video = document.getElementById('vid');
+        video.play();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        document.getElementById('btn').addEventListener('click', function () {
+            close_ad();
+        });
+
+        const video = document.getElementById("vid");
+        const count_guesses = "{{ count_guesses | default(0)}}";  // Flask variable
+
+        if (count_guesses % 8 == 7) {
+            show_ad();
+            console.log("Ad shown");
+        }
+    });
+</script>
 {% endblock %}

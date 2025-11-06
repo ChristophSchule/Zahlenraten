@@ -30,7 +30,7 @@ def guess():
         return render_template("game_over.html", guesses=guesses, number_to_guess=number_to_guess,  scores=scores)
     else:
         scores = load_scores()
-        return render_template("index.html", guesses=guesses, result=result,  scores=scores)
+        return render_template("index.html", guesses=guesses, result=result, count_guesses = len(guesses),  scores=scores)
 
 @bp.route("/save_score", methods=["POST"])
 def save_score_route():
