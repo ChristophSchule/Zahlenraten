@@ -25,13 +25,24 @@ def guess():
     number_to_guess = session.get('number_to_guess')
     if result == "correct":
         points = session.get('guesses').__len__()
-        save_score('Test', points)
+        session['last_points'] = points
         scores = load_scores()
         return render_template("game_over.html", guesses=guesses, number_to_guess=number_to_guess,  scores=scores)
     else:
         scores = load_scores()
         return render_template("index.html", guesses=guesses, result=result,  scores=scores)
 
+@bp.route("/save_score", methods=["POST"])
+def save_score_route():
+    username = (request.form.get("username") or "anonymous").strip()
+    points = session.get('last_points', len(session.get('guesses', [])))
+    save_score(username, points)
+    # Markiere, dass der Score bereits gespeichert wurde
+    session['score_saved'] = True
+    session.pop('last_points', None)
+    scores = load_scores()
+    return render_template("game_over.html", guesses=session.get('guesses', []),
+                           number_to_guess=session.get('number_to_guess'), scores=scores, score_saved=True)
 
 def start_game():
     session['guesses'] = []
@@ -42,7 +53,7 @@ def start_game():
     return render_template("index.html", guesses=[], scores=scores)
 
 def load_scores():
-    users = User.query.order_by(User.points.asc(),User.date_created.asc()).limit(10).all()
+    users = User.query.order_by(User.points.asc(),User.date_created.asc()).limit(5).all()
     return users
 
 def save_score(username, points):
