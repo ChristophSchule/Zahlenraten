@@ -65,12 +65,12 @@ body * {
     grid-area: header;
 }
 
-.userInputPrompt {
+.userInputPrompt, .usernameInputPrompt, .savedNotice {
     font-size: 3rem;
     grid-area: text1;
 }
 
-.userInput {
+.userInput, .usernameInput {
     outline: none;
     width: 14rem;
     font-size: 3rem;
@@ -90,7 +90,7 @@ body * {
     animation: borderPulse 2s;
 }
 
-.guessBtn, .restartBtn {
+.guessBtn, .restartBtn, .saveScoreBtn {
     height: 5rem;
     width: 12rem;
     outline: none;
