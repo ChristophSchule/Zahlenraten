@@ -4,12 +4,12 @@
 <div class="content">
     <h1 class="gameHeader">🎉 Glückwunsch!</h1>
     <span class="userInputPrompt">Du hast die richtige Zahl <strong>{{ number_to_guess }}</strong> erraten!</span>
-    <div class="form-container">
+    <div class="form-container" >
         {% if not score_saved %}
-        <form action="{{ url_for('main.save_score_route') }}" method="post" id="saveScoreForm">
-            <label for="usernameInputPrompt">Name für Highscore:</label>
-            <input id="usernameInput" name="username" type="text" maxlength="32" placeholder="Dein Name" required />
-            <div class="button-row" style="align-items: center;">
+        <form action="{{ url_for('main.save_score_route') }}" method="post" id="saveScoreForm" style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <label class="usernameInputPrompt" style="text-align: center;">Name für Highscore:</label>
+            <input class="usernameInput" name="username" type="text" maxlength="32" placeholder="Name" required />
+            <div class="button-row" >
                 <button type="submit" name="save" value="savename" class="saveScoreBtn">Highscore speichern</button>
             </div>
         </form>

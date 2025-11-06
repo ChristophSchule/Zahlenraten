@@ -65,11 +65,14 @@ body * {
     grid-area: header;
 }
 
-.userInputPrompt, .usernameInputPrompt, .savedNotice {
+.userInputPrompt {
     font-size: 3rem;
     grid-area: text1;
 }
-
+.usernameInputPrompt, .savedNotice {
+    font-size: 1.25rem;
+    grid-area: text1;
+}
 .userInput, .usernameInput {
     outline: none;
     width: 14rem;
